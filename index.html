@@ -3,9 +3,12 @@
 		<h1>Hello World<h1>
 
 		<section class="pyscript">
-			<button id="test" py-click="test">Test</button>
+			<h4>Test Section</h4>
+			<div>
+				<button id="test" py-click="test">Test</button>
+			</div>
 			<div id="test"></div>
-			<script type="py" src="./mtg_set_search.py""></script>
+			<script type="py" src="./mtg_set_search.py", config="./pyscript.toml"></script>
 		</section>
     </body>
 </html>
