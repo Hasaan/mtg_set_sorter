@@ -4,12 +4,8 @@ import os
 import argparse
 
 import re
-
-import multiprocessing as mp
 import time
-
 import requests
-
 
 def main(argv=None):
     print("Starting")
