@@ -1,59 +1,41 @@
 import json
-import sys
-import os
-import argparse
 
 import re
 import time
 import requests
 
-def main(argv=None):
+from pyweb import pydom
+
+def test():
+    return "test successful"
+
+def search_database(decklist):
     print("Starting")
-    CLI = argparse.ArgumentParser()
-    
-    #CLI.add_argument("--input_json", type=str, help = "Input File")
-    CLI.add_argument("--decklist", type=str, help = "Input File")
-    CLI.add_argument("--output", type=str, help = "path to dump files")
-    
-    args = CLI.parse_args()
-    
-    # if(args.input_json):
-        # input_json = os.path.abspath(args.input_json)
-        # print("Input is: ", input_json)
-    # else:
-        # print("No input given")
-        # exit(1)    
-        
-    if(args.decklist):
-        decklist = os.path.abspath(args.decklist)
+  
+    if(decklist):
         print("Decklist is: ", decklist)
     else:
         print("Decklist not provided")
         exit()
         
-    if(args.output):
-        output = os.path.abspath(args.output)
-    else:
-        output = os.getcwd()
         
 
     #read decklist from txt
     print("Reading Decklist\n")
     card_pat = re.compile(r'\d+\s+(.*)')
     compiled_decklist = []
-    with open(decklist, "r") as file:
-        for line in file:
-        
-            search = card_pat.search(line) 
-            if search:
-                search_result = search.group(1)
-                print(search_result)
-                compiled_decklist.append(search_result)
-                
-            elif "Mainboard" in line:
-                continue
-            else:
-                break
+    for line in decklist:
+    
+        search = card_pat.search(line) 
+        if search:
+            search_result = search.group(1)
+            print(search_result)
+            compiled_decklist.append(search_result)
+            
+        elif "Mainboard" in line:
+            continue
+        else:
+            break
     
     cards_done = 0            
     compiled_list = {}
@@ -174,7 +156,4 @@ def call_scryfall(card):
     
     return response.json()["data"]
       
-    
-if __name__ == '__main__':
-    main(sys.argv)
-    
+

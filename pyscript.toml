@@ -1,0 +1,3 @@
+name = "MTG Set Sorter"
+description = "A simple application showing how to install and use a package in PyScript."
+packages = ["json","re","time","requests"]
