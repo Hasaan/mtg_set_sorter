@@ -7,7 +7,7 @@ import requests
 from pyweb import pydom
 
 def test():
-    return "test successful"
+    pydom["div#test"].html = f"Test Successful"
 
 def search_database(decklist):
     print("Starting")
