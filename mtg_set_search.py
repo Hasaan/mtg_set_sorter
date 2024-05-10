@@ -172,33 +172,8 @@ def call_scryfall(card):
     query = {'q':card,'lang':'en', 'unique':'prints'}
     response = requests.get(api_url, params=query)
     
-    # for data in response.json()["data"]:
-        # if data["set_name"] == 'Magic Online Promos':
-            # print(data)
-            # exit()
-    
-    # print( response.json()["data"][0])
-    # exit()
-    
     return response.json()["data"]
       
-def compare_db(database, card, dataList):
-    print("Starting thread for ", card)
-    results = {}
-    
-    for entry in database:
-        
-        if entry["name"] == card:
-            #if entry["set_name"] == 'Seventh Edition' and entry["lang"] == "en":
-            #    print(entry)
-            if entry["set_name"] not in results:
-                results[entry["set_name"]] = []
-                
-            results[entry["set_name"]].append((entry["name"], entry["rarity"]))
-                
-                  
-    print("Ending thread for ", card)
-    return dataList.append(results)
     
 if __name__ == '__main__':
     main(sys.argv)
