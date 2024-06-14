@@ -179,7 +179,7 @@ def search_database(decklist):
         print("-------------------------------------------")   
         return_string += "-------------------------------------------" + "\n"
         
-        return return_string
+    return return_string
 
 #query Scryfall for certain english card names
 def call_scryfall(card):
