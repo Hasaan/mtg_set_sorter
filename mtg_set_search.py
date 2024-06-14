@@ -32,6 +32,7 @@ def search_database(decklist):
 
     #read decklist from txt
     print("Reading Decklist\n")
+    decklist = decklist.split("\n")
     card_pat = re.compile(r'\d+\s+(.*)')
     compiled_decklist = []
     # print(compiled_decklist)
@@ -58,6 +59,7 @@ def search_database(decklist):
         print(str(round((cards_done/ len(compiled_decklist))*100)) + "% Comparing for: " + card)
         cards_done += 1
         card_data = call_scryfall(card)
+        
         
         #need delay between queries as per Scryfall API guidelines
         time.sleep(0.1)
@@ -170,4 +172,3 @@ def call_scryfall(card):
     
     return response.json()["data"]
       
-

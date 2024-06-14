@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():   
     if request.method == 'POST':
         decklist = request.form.get('deckText')
-        search_database(decklist) 
+        search_database(decklist)
     return render_template('template.html')
 
 # @app.route('/deckInput', methods=['POST'])
