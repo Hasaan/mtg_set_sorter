@@ -3,14 +3,14 @@ from mtg_set_search import *
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['POST'])
 def index():    
-    return render_template('template.html')
 
-@app.route('/deckInput', methods=['POST'])
-def deckInput():
     if request.method == 'POST':
         decklist = request.form.get('deckTextArea')
         search_database(decklist)
 
-    
+    return render_template('template.html')
+
+if __name__ == '__main__': 
+    app.run() 
