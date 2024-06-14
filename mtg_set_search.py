@@ -2,12 +2,13 @@ import json
 
 import re
 import time
-import requests
+#import requests
+import pip._vendor.requests as requests
 
-from pyweb import pydom
+#from pyweb import pydom
 
-def test():
-    pydom["div#test"].html = f"Test Successful"
+# def test():
+#     pydom["div#test"].html = f"Test Successful"
 
 def search_database(decklist):
     print("Starting")
@@ -24,6 +25,10 @@ def search_database(decklist):
     print("Reading Decklist\n")
     card_pat = re.compile(r'\d+\s+(.*)')
     compiled_decklist = []
+    # print(compiled_decklist)
+
+    with open(decklist) as file:
+        decklist = file.readlines()
     for line in decklist:
     
         search = card_pat.search(line) 
@@ -157,3 +162,4 @@ def call_scryfall(card):
     return response.json()["data"]
       
 
+search_database('./TestDeck')
