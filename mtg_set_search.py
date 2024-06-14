@@ -36,8 +36,8 @@ def search_database(decklist):
     compiled_decklist = []
     # print(compiled_decklist)
 
-    with open(decklist) as file:
-        decklist = file.readlines()
+    # with open(decklist) as file:
+    #     decklist = file.readlines()
     for line in decklist:
     
         search = card_pat.search(line) 
