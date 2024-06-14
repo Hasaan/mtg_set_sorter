@@ -122,10 +122,11 @@ def search_database(decklist):
 
         
     print("\n\n")
+    return_string = ""
     #print out top 10 matches with stats
     for card_set in ordered_match:
         print(card_set + ": " + str(ordered_match[card_set]))
-        
+        return_string += card_set + ": " + str(ordered_match[card_set]) + "\n"
         rarity_str = "| "
         if "common" in compiled_list[card_set]["Counts"]:
             rarity_str += "common" + " " + str(compiled_list[card_set]["Counts"]["common"]) + " | "
@@ -136,33 +137,49 @@ def search_database(decklist):
         if "mythic" in compiled_list[card_set]["Counts"]:
             rarity_str += "mythic" + " " + str(compiled_list[card_set]["Counts"]["mythic"]) + " | "
         print(rarity_str)
+        return_string += rarity_str + "\n"
         
         if "common" in compiled_list[card_set]:
             print("COMMONS:")
+            return_string += "COMMONS:" + "\n"
             temp_sorted_list = sorted(compiled_list[card_set]["common"])
             for card in temp_sorted_list:
                 print(card) 
+                return_string += card + "\n"
+            return_string += "\n"    
             print("\n")
         if "uncommon" in compiled_list[card_set]:
             print("UNCOMMONS:")
+            return_string += "UNCOMMONS:" + "\n"
             temp_sorted_list = sorted(compiled_list[card_set]["uncommon"])
             for card in temp_sorted_list:
                 print(card)    
+                return_string += card + "\n"
+            return_string += "\n"    
             print("\n")
         if "rare" in compiled_list[card_set]:
             print("RARES:")
+            return_string += "RARES:" + "\n"
             temp_sorted_list = sorted(compiled_list[card_set]["rare"])
             for card in temp_sorted_list:
-                print(card)     
+                print(card)
+                return_string += card + "\n"
+            return_string += "\n"    
             print("\n")
         if "mythic" in compiled_list[card_set]:
             print("MYTHICS:")
+            return_string += "MYTHICS:" + "\n"
             temp_sorted_list = sorted(compiled_list[card_set]["mythic"])
             for card in temp_sorted_list:
                 print(card)
+                return_string += card + "\n"
+            return_string += "\n"    
             print("\n")
         
         print("-------------------------------------------")   
+        return_string += "-------------------------------------------" + "\n"
+        
+        return return_string
 
 #query Scryfall for certain english card names
 def call_scryfall(card):
