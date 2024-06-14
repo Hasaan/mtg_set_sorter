@@ -9,5 +9,8 @@ def index():
 
 @app.route('/deckInput', methods=['POST'])
 def deckInput():
-    decklist = request.form.get('textarea')
-    return search_database(decklist)
+    if request.method == 'POST':
+        decklist = request.form.get('deckTextArea')
+        search_database(decklist)
+
+    
