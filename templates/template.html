@@ -1,36 +1,61 @@
 <!doctype html>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+</script>
 
 <title>MTG Set Search</title> 
 <meta charset=utf-8> 
 
 <h1>Enter Deck List Below:</h1>
 <form method="POST" id = "DeckSubmissionForm">
-    <textarea id="deckTextArea" name="deckText" rows="4" cols="50">black lotus
+    <textarea id="deckTextArea" name="deckText" rows="4" cols="50">Black Lotus
     </textarea>
     <button type="submit"/>submit</button>
 </form>
+<!-- connect to socket to get data from the server -->
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js">
           integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-          crossorigin="anonymous"></script>
- 
-  <script type="text/javascript">
+          crossorigin="anonymous"</script>
+<script type="text/javascript">
+    header("Access-Control-Allow-Origin: *");
+    $(document).ready(function(){
+    // sending a connect request to the server.
+        socket = io.connect('http://localhost:5000');
+    });
     $(document).on('submit','#DeckSubmissionForm',function(e)
-        {
-      console.log('hello');
-      e.preventDefault();
-      $.ajax({
+    {
+    console.log('hello');
+    e.preventDefault();
+    $.ajax({
         type:'POST',
         url:'/',
-        data:{
+        data:
+        {
             deckText:$("#deckTextArea").val()
         },
         success:function()
         {
-          alert('Submitted');
+            alert('Submitted');
+            socket.emit('deckSubmitted');
         }
-      })
+        });
     });
-  </script>
 
-<div id ="output" name = "output"></div>
+    socket.on('after connect', function(msg) {
+        console.log('After connect', msg);
+    });
+            
+    socket.on('sortedListupdate', function(msg) {
+        console.log('listIncoming');
+        $('#' + msg.who).val(msg.data);
+        document.getElementById("output").innerHTML += msg.data;
+    });
+</script>
+
+<div id ="output" name = "output">
+    output here:
+</div>
