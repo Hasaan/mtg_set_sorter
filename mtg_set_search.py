@@ -171,4 +171,3 @@ def call_scryfall(card):
     return response.json()["data"]
       
 
-search_database('./TestDeck')
