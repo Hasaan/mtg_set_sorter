@@ -1,5 +1,5 @@
 <!doctype html>
-<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.min.js"></script>
 <script>
     const socket = io();
 </script>
@@ -21,11 +21,11 @@
           integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
           crossorigin="anonymous"</script>
 <script type="text/javascript">
-    header("Access-Control-Allow-Origin: *");
-    $(document).ready(function(){
-    // sending a connect request to the server.
-        socket = io.connect('http://localhost:5000');
-    });
+    
+    // $(document).ready(function(){
+    // // sending a connect request to the server.
+    //     socket = io.connect('http://localhost:5000');
+    // });
     $(document).on('submit','#DeckSubmissionForm',function(e)
     {
     console.log('hello');
@@ -50,9 +50,10 @@
     });
             
     socket.on('sortedListupdate', function(msg) {
+        // $('#' + msg.who).val(msg.data);
         console.log('listIncoming');
-        $('#' + msg.who).val(msg.data);
-        document.getElementById("output").innerHTML += msg.data;
+        console.log(msg);
+        document.getElementById("output").innerHTML += msg;
     });
 </script>
 

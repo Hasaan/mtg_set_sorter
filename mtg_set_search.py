@@ -179,6 +179,8 @@ def search_database(decklist):
         print("-------------------------------------------")   
         return_string += "-------------------------------------------" + "\n"
         
+        print('returnString:')
+        print(return_string)
         return return_string
 
 #query Scryfall for certain english card names

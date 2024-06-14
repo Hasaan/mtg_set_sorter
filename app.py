@@ -11,14 +11,18 @@ def index():
     if request.method == 'POST':
         decklist = request.form.get('deckText')
         SortedList = search_database(decklist)
+        print(SortedList)
         sendList(SortedList)
+        
     return render_template('template.html')
 
 if __name__ == '__main__':
     socketio.run(app)
 
-def sendList(List):
-    socketio.emit('sortedListupdate', List)
+def sendList(listToSend):
+    print('sending list:')
+    print(listToSend)
+    socketio.emit('sortedListupdate', listToSend)
 
 
 # @app.route('/deckInput', methods=['POST'])
